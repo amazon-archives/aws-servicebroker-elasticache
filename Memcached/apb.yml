@@ -1,0 +1,134 @@
+name: sns-apb
+image: ansibleplaybookbundle/sns-apb
+description: 'Managed sns topic'
+tags:
+  - amazon
+  - sns
+bindable: true
+async: optional
+plans:
+  - name: default
+    description: 'Managed SNS Topic'
+    free: false
+    parameters:
+      - name: stack_identifier
+        required: true
+        title: Unique Stack Identifier
+        description: 'Unique identifier to be included in the CloudFormation Stack Name to prevent naming collisions. Must only contain alphanumeric characters and hyphens. (e.g. "sample-sns-stack", "production-sns-08-2017")'
+        type: string
+      - name: aws_access_key
+        required: true
+        title: AWS Access Key
+        description: 'AWS Access Key to authenticate to AWS with.'
+        type: string
+      - name: aws_secret_key
+        required: true
+        title: AWS Secret Key
+        description: 'AWS Secret Key to authenticate to AWS with.'
+        type: string
+      - name: region
+        required: true
+        title: AWS Region
+        description: 'AWS Region to create Memcached Cluster in.'
+        type: string
+        default: "us-west-2"
+      - name: ApplicationName
+        required: true
+        title: Application Name
+        description: 'memcached Application name'
+        type: string
+        default: "Application 1"
+      - name: ClusterType
+        required: true
+        title: Cluster Type
+        description: 'The type of cluster. Specify single-node or multi-node (default).  Number of nodes must be greater than 1 for multi-node'
+        type: string
+        default: "multi-node"
+      - name: NumCacheNodes
+        required: true
+        title: Number of Cluster Nodes
+        description: 'The number of cache nodes in the cluster.'
+        type: string
+        default: "3"
+      - name: EngineVersion
+        required: true
+        title: Engine Version
+        description: 'Family to be used with cluster or parameter group'
+        type: string
+        default: "1.4.34"
+      - name: CacheNodeType
+        required: true
+        title: Cache Node Type
+        description: 'The compute and memory capacity of nodes in a cache cluster.'
+        type: string
+        default: "cache.m4.large"
+      - name: VpcId
+        required: true
+        title: VPC ID
+        description: 'VPC ID (e.g. "vpc-6c9f1a0b")'
+        type: string
+      - name: PortNumber
+        required: true
+        title: Port Number
+        description: 'The port number for the database server to listen on. (values in range 1150-65535)'
+        type: int
+        default: 6379
+      - name: PreferredMaintenanceWindowDay
+        required: true
+        title: Day of Preferred Maintenance Window
+        description: 'The day of the week which Elasticache maintenance will be performed (e.g. "Mon")'
+        type: string
+        default: "Mon"
+      - name: PreferredMaintenanceWindowStartTime
+        required: true
+        title: Preferred Maintenance Window Start Time
+        description: 'The weekly start time in UTC for the Elasticache maintenance window, must be less than Preferred Maintenance Window End Time and cannot overlap with Preferred Backup Window (e.g. "04:00")'
+        type: string
+        default: "04:00"
+      - name: PreferredMaintenanceWindowEndTime
+        required: true
+        title: Preferred Maintenance Window End Time
+        description: 'The weekly end time in UTC for the Elasticache maintenance window, must be less than Preferred Maintenance Window End Time and cannot overlap with Preferred Backup Window (e.g. "04:00")'
+        type: string
+        default: "06:00"
+      - name: AZMode
+        required: true
+        title:  AZ Mode
+        description: 'Specifies whether the nodes in this Memcached cluster are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region. This parameter is only supported for Memcached cache clusters. If the AZMode and PreferredAvailabilityZones are not specified, ElastiCache assumes single-az mode. '
+        type: string
+        default: "cross-az"
+      - name: NumberOfAvailabilityZones
+        required: true
+        title: Number of Availability Zones
+        description: 'Quantity of subnets to use, if selecting more than 2 the region this stack is in must have at least that many Availability Zones'
+        type: int
+        default: 3
+      - name: AvailabilityZones
+        required: true
+        title: Availability Zones
+        description: 'Comma separated list of availability zones to use, must be the same quantity as specified in Number of Availability Zones (e.g. "us-west-2a,us-west-2b,us-west-2c")'
+        type: string
+        default: "us-west-2a,us-west-2b,us-west-2c"
+      - name: CidrBlocks
+        required: true
+        title: CIDR Blocks
+        description: 'Comma seperated list of CIDR blocks to place RDS into, must be the same quantity as specified in Number of Availability Zones (e.g. "10.0.96.0/20,10.0.112.0/20,10.0.128.0/20")'
+        type: string
+      - name: AccessCidr
+        required: true
+        title: Access CIDR
+        description: 'CIDR block to allow to connect to database (e.g. "10.0.0.0/16")'
+        type: string
+      - name: AllowVersionUpgrade
+        required: true
+        title: Allow  Version Upgrade
+        description: 'If you update the Engine Version property to a version that''s different from the DB instance''s current version, set this property to true. (values: "true", "false")'
+        type: string
+        default: "true"
+
+    metadata:
+        displayName: "Amazon ElastiCache Memcached"
+        longDescription: "Amazon ElastiCache is a web service that makes it easy to set up, manage, and scale distributed in-memory cache environments in the cloud. It provides a high performance, resizeable, and cost-effective in-memory cache, while removing the complexity associated with deploying and managing a distributed cache environment."
+        imageUrl: "https://d0.awsstatic.com/cloud-storage/Deck_Databases.png"
+        documentationUrl: "https://aws.amazon.com/documentation/elasticache/"
+        cost: $0.00

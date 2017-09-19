@@ -1,0 +1,33 @@
+- name: Launch memcached cluster
+  cloudformation:
+   aws_access_key: "{{ aws_access_key }}"
+   aws_secret_key: "{{ aws_secret_key }}"
+   stack_name: "apb-memcached-{{ stack_identifier }}"
+   state: "present"
+   region: "{{ region }}"
+   disable_rollback: false
+   template: "{{ role_path }}/files/MemCachedCluster.yml"
+   template_parameters:
+     ApplicationName: "{{ ApplicationName }}"
+     VpcId: "{{ VpcId }}"
+     NumberOfAvailabilityZones: "{{ NumberOfAvailabilityZones | string }}"
+     PreferredBackupWindow: "{{ PreferredBackupWindow }}"
+     PreferredMaintenanceWindowDay: "{{ PreferredMaintenanceWindowDay }}"
+     PreferredMaintenanceWindowStartTime: "{{ PreferredMaintenanceWindowStartTime }}"
+     PreferredMaintenanceWindowEndTime: "{{ PreferredMaintenanceWindowEndTime }}"
+     AvailabilityZones: "{{ AvailabilityZones }}"
+     CidrBlocks: "{{ CidrBlocks }}"
+     AccessCidr: "{{ AccessCidr }}"
+     AllowVersionUpgrade: "{{ AllowVersionUpgrade }}"
+     AZMode: "{{ AZMode }}"
+     PortNumber: "{{ PortNumber | string }}"
+     EngineVersion: "{{ EngineVersion }}"
+     CacheNodeType: "{{ CacheNodeType }}"
+     NumCacheNodes: "{{ NumCacheNodes }}"
+     ClusterType: "{{ ClusterType }}"
+     
+   tags:
+     Stack: "ansible-cloudformation"
+     Application: "ansible-memcached"
+     Description: "{{ ansible_user_id }} memcached {{ ApplicationName }}"
+  register: memcached
