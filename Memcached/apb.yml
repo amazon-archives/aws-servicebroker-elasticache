@@ -1,20 +1,21 @@
-name: sns-apb
-image: ansibleplaybookbundle/sns-apb
-description: 'Managed sns topic'
+name: elasticache-apb
+image: ansibleplaybookbundle/elasticache-apb
+description: 'Elasticache'
 tags:
   - amazon
-  - sns
+  - elasticache
+  - memcached
 bindable: true
 async: optional
 plans:
   - name: default
-    description: 'Managed SNS Topic'
+    description: 'Production Memcached Cluster on AWS Elasticache'
     free: false
     parameters:
       - name: stack_identifier
         required: true
         title: Unique Stack Identifier
-        description: 'Unique identifier to be included in the CloudFormation Stack Name to prevent naming collisions. Must only contain alphanumeric characters and hyphens. (e.g. "sample-sns-stack", "production-sns-08-2017")'
+        description: 'Unique identifier to be included in the CloudFormation Stack Name to prevent naming collisions. Must only contain alphanumeric characters and hyphens. (e.g. "dev-05-2018", "production-08-2017")'
         type: string
       - name: aws_access_key
         required: true
@@ -93,8 +94,8 @@ plans:
         default: "06:00"
       - name: AZMode
         required: true
-        title:  AZ Mode
-        description: 'Specifies whether the nodes in this Memcached cluster are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region. This parameter is only supported for Memcached cache clusters. If the AZMode and PreferredAvailabilityZones are not specified, ElastiCache assumes single-az mode. '
+        title: AZ Mode
+        description: "Specifies whether the nodes in this Memcached cluster are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region. This parameter is only supported for Memcached cache clusters. If the AZMode and PreferredAvailabilityZones are not specified, ElastiCache assumes single-az mode."
         type: string
         default: "cross-az"
       - name: NumberOfAvailabilityZones

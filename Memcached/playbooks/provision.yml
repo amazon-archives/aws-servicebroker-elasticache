@@ -1,4 +1,4 @@
-- name: Deploy memcached to openshift
+- name: Provision ElastiCache
   hosts: localhost
   gather_facts: true
   connection: local

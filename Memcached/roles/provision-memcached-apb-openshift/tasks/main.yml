@@ -1,4 +1,4 @@
-- name: Launch memcached cluster
+- name: Launch ElastiCache Memcached cluster
   cloudformation:
    aws_access_key: "{{ aws_access_key }}"
    aws_secret_key: "{{ aws_secret_key }}"
@@ -11,7 +11,6 @@
      ApplicationName: "{{ ApplicationName }}"
      VpcId: "{{ VpcId }}"
      NumberOfAvailabilityZones: "{{ NumberOfAvailabilityZones | string }}"
-     PreferredBackupWindow: "{{ PreferredBackupWindow }}"
      PreferredMaintenanceWindowDay: "{{ PreferredMaintenanceWindowDay }}"
      PreferredMaintenanceWindowStartTime: "{{ PreferredMaintenanceWindowStartTime }}"
      PreferredMaintenanceWindowEndTime: "{{ PreferredMaintenanceWindowEndTime }}"
@@ -25,9 +24,19 @@
      CacheNodeType: "{{ CacheNodeType }}"
      NumCacheNodes: "{{ NumCacheNodes }}"
      ClusterType: "{{ ClusterType }}"
-     
+
    tags:
      Stack: "ansible-cloudformation"
      Application: "ansible-memcached"
      Description: "{{ ansible_user_id }} memcached {{ ApplicationName }}"
-  register: memcached
+  register: elasticache
+
+- name: Check for ElastiCache CloudFormation error logs
+  debug:
+    var: elasticache.log
+
+- name: Encode bind credentials
+  asb_encode_binding:
+    fields:
+      endpoint_address: "{{ elasticache.stack_outputs.EndpointAddress }}"
+  when: elasticache.log | length < 1
