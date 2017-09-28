@@ -31,8 +31,22 @@ plans:
         required: true
         title: AWS Region
         description: 'AWS Region to create Memcached Cluster in.'
-        type: string
-        default: "us-west-2"
+        type: enum
+        enum:
+          - ap-northeast-1
+          - ap-northeast-2
+          - ap-south-1
+          - ap-southeast-1
+          - ap-southeast-2
+          - ca-central-1
+          - eu-central-1
+          - eu-west-1
+          - eu-west-2
+          - sa-east-1
+          - us-east-1
+          - us-east-2
+          - us-west-1
+          - us-west-2
       - name: ApplicationName
         required: true
         title: Application Name
@@ -43,8 +57,9 @@ plans:
         required: true
         title: Cluster Type
         description: 'The type of cluster. Specify single-node or multi-node (default).  Number of nodes must be greater than 1 for multi-node'
-        type: string
-        default: "multi-node"
+        type: enum
+        enum: ["single-node", "multi-node"]
+        default: 'multi-node'
       - name: NumCacheNodes
         required: true
         title: Number of Cluster Nodes
@@ -55,13 +70,36 @@ plans:
         required: true
         title: Engine Version
         description: 'Family to be used with cluster or parameter group'
-        type: string
+        type: enum
+        enum:
+          - '1.4.34'
+          - '1.4.33'
+          - '1.4.24'
+          - '1.4.5'
         default: "1.4.34"
       - name: CacheNodeType
         required: true
         title: Cache Node Type
         description: 'The compute and memory capacity of nodes in a cache cluster.'
-        type: string
+        type: enum
+        enum:
+          - cache.t2.small
+          - cache.t2.medium
+          - cache.m3.medium
+          - cache.m3.large
+          - cache.m3.xlarge
+          - cache.m3.2xlarge
+          - cache.m4.medium
+          - cache.m4.large
+          - cache.m4.xlarge
+          - cache.m4.2xlarge
+          - cache.m4.4xlarge
+          - cache.m4.10xlarge
+          - cache.r4.large
+          - cache.r4.xlarge
+          - cache.r4.2xlarge
+          - cache.r4.4xlarge
+          - cache.r4.8xlarge
         default: "cache.m4.large"
       - name: VpcId
         required: true
@@ -78,25 +116,82 @@ plans:
         required: true
         title: Day of Preferred Maintenance Window
         description: 'The day of the week which Elasticache maintenance will be performed (e.g. "Mon")'
-        type: string
+        type: enum
+        enum:
+          - Mon
+          - Tue
+          - Wed
+          - Thu
+          - Fri
+          - Sat
+          - Sun
         default: "Mon"
       - name: PreferredMaintenanceWindowStartTime
         required: true
         title: Preferred Maintenance Window Start Time
         description: 'The weekly start time in UTC for the Elasticache maintenance window, must be less than Preferred Maintenance Window End Time and cannot overlap with Preferred Backup Window (e.g. "04:00")'
-        type: string
+        type: enum
+        enum:
+          - '00:00'
+          - '01:00'
+          - '02:00'
+          - '03:00'
+          - '04:00'
+          - '05:00'
+          - '06:00'
+          - '07:00'
+          - '08:00'
+          - '09:00'
+          - '10:00'
+          - '11:00'
+          - '12:00'
+          - '13:00'
+          - '14:00'
+          - '15:00'
+          - '16:00'
+          - '17:00'
+          - '18:00'
+          - '19:00'
+          - '20:00'
+          - '21:00'
+          - '22:00'
         default: "04:00"
       - name: PreferredMaintenanceWindowEndTime
         required: true
         title: Preferred Maintenance Window End Time
         description: 'The weekly end time in UTC for the Elasticache maintenance window, must be less than Preferred Maintenance Window End Time and cannot overlap with Preferred Backup Window (e.g. "04:00")'
-        type: string
+        type: enum
+        enum:
+          - '00:00'
+          - '01:00'
+          - '02:00'
+          - '03:00'
+          - '04:00'
+          - '05:00'
+          - '06:00'
+          - '07:00'
+          - '08:00'
+          - '09:00'
+          - '10:00'
+          - '11:00'
+          - '12:00'
+          - '13:00'
+          - '14:00'
+          - '15:00'
+          - '16:00'
+          - '17:00'
+          - '18:00'
+          - '19:00'
+          - '20:00'
+          - '21:00'
+          - '22:00'
         default: "06:00"
       - name: AZMode
         required: true
         title: AZ Mode
         description: "Specifies whether the nodes in this Memcached cluster are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region. This parameter is only supported for Memcached cache clusters. If the AZMode and PreferredAvailabilityZones are not specified, ElastiCache assumes single-az mode."
-        type: string
+        type: enum
+        enum: ["cross-az", "single-az"]
         default: "cross-az"
       - name: NumberOfAvailabilityZones
         required: true
@@ -124,12 +219,13 @@ plans:
         required: true
         title: Allow  Version Upgrade
         description: 'If you update the Engine Version property to a version that''s different from the DB instance''s current version, set this property to true. (values: "true", "false")'
-        type: string
+        type: enum
+        enum: ["true", "false"]
         default: "true"
 
     metadata:
         displayName: "Amazon ElastiCache Memcached"
         longDescription: "Amazon ElastiCache is a web service that makes it easy to set up, manage, and scale distributed in-memory cache environments in the cloud. It provides a high performance, resizeable, and cost-effective in-memory cache, while removing the complexity associated with deploying and managing a distributed cache environment."
-        imageUrl: "https://d0.awsstatic.com/cloud-storage/Deck_Databases.png"
+        imageUrl: imageUrl: "https://s3.amazonaws.com/thp-aws-icons-dev/Database_AmazonElasticCache_Memcached_LARGE.png"
         documentationUrl: "https://aws.amazon.com/documentation/elasticache/"
         cost: $0.00
