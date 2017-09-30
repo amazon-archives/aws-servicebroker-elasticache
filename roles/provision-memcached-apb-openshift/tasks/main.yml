@@ -17,7 +17,7 @@
      AvailabilityZones: "{{ AvailabilityZones }}"
      CidrBlocks: "{{ CidrBlocks }}"
      AccessCidr: "{{ AccessCidr }}"
-     AllowVersionUpgrade: "{{ AllowVersionUpgrade }}"
+     AllowVersionUpgrade: "{{ AllowVersionUpgrade | string }}"
      AZMode: "{{ AZMode }}"
      PortNumber: "{{ PortNumber | string }}"
      EngineVersion: "{{ EngineVersion }}"
@@ -38,5 +38,6 @@
 - name: Encode bind credentials
   asb_encode_binding:
     fields:
-      endpoint_address: "{{ elasticache.stack_outputs.EndpointAddress }}"
+      MEMCACHE_ENDPOINT: "{{ elasticache.stack_outputs.EndpointAddress }}"
+      MEMCACHE_PORT: "{{ PortNumber }}"
   when: elasticache.log | length < 1

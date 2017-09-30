@@ -157,10 +157,10 @@ Parameters:
       Indicates that minor engine upgrades will be applied automatically to the
       cache cluster during the maintenance window. The default value is true. 
     Type: String
-    Default: 'true'
+    Default: 'True'
     AllowedValues:
-      - 'true'
-      - 'false'
+      - 'True'
+      - 'False'
   PortNumber:
     Description: The port number for the Cluster to listen on
     Type: Number
