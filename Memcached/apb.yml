@@ -1,5 +1,5 @@
+version: 1.0
 name: elasticache-apb
-image: ansibleplaybookbundle/elasticache-apb
 description: 'Elasticache'
 tags:
   - amazon
