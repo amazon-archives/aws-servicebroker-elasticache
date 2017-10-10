@@ -8,20 +8,15 @@ tags:
 bindable: true
 async: optional
 metadata:
-  displayName: "Amazon ElastiCache Memcached"
+  displayName: "Amazon ElastiCache"
   longDescription: "Amazon ElastiCache is a web service that makes it easy to set up, manage, and scale distributed in-memory cache environments in the cloud. It provides a high performance, resizeable, and cost-effective in-memory cache, while removing the complexity associated with deploying and managing a distributed cache environment."
-  imageUrl: "https://s3.amazonaws.com/thp-aws-icons-dev/Database_AmazonElasticCache_Memcached_LARGE.png"
+  imageUrl: "https://s3.amazonaws.com/thp-aws-icons-dev/Database_AmazonElasticCache_LARGE.png"
   documentationUrl: "https://aws.amazon.com/documentation/elasticache/"
 plans:
-  - name: default
+  - name: memcached
     description: 'Production Memcached Cluster on AWS Elasticache'
     free: false
     parameters:
-      - name: stack_identifier
-        required: true
-        title: Unique Stack Identifier
-        description: 'Unique identifier to be included in the CloudFormation Stack Name to prevent naming collisions. Must only contain alphanumeric characters and hyphens. (e.g. "dev-05-2018", "production-08-2017")'
-        type: string
       - name: aws_access_key
         required: true
         title: AWS Access Key
@@ -52,12 +47,7 @@ plans:
           - us-east-2
           - us-west-1
           - us-west-2
-      - name: ApplicationName
-        required: true
-        title: Application Name
-        description: 'memcached Application name'
-        type: string
-        default: "Application 1"
+        default: us-west-2
       - name: ClusterType
         required: true
         title: Cluster Type
@@ -69,8 +59,8 @@ plans:
         required: true
         title: Number of Cluster Nodes
         description: 'The number of cache nodes in the cluster.'
-        type: string
-        default: "3"
+        type: int
+        default: 3
       - name: EngineVersion
         required: true
         title: Engine Version

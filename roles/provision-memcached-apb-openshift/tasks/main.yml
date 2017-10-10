@@ -2,13 +2,14 @@
   cloudformation:
    aws_access_key: "{{ aws_access_key }}"
    aws_secret_key: "{{ aws_secret_key }}"
-   stack_name: "apb-memcached-{{ stack_identifier }}"
+   stack_name: "apb-memcached-{{ stack_suffix }}"
    state: "present"
    region: "{{ region }}"
    disable_rollback: false
    template: "{{ role_path }}/files/MemCachedCluster.yml"
+   role_arn: "{{ aws_cloudformation_role_arn }}"
    template_parameters:
-     ApplicationName: "{{ ApplicationName }}"
+     ApplicationName: "{{ application_name }}"
      VpcId: "{{ VpcId }}"
      NumberOfAvailabilityZones: "{{ NumberOfAvailabilityZones | string }}"
      PreferredMaintenanceWindowDay: "{{ PreferredMaintenanceWindowDay }}"
@@ -22,13 +23,12 @@
      PortNumber: "{{ PortNumber | string }}"
      EngineVersion: "{{ EngineVersion }}"
      CacheNodeType: "{{ CacheNodeType }}"
-     NumCacheNodes: "{{ NumCacheNodes }}"
+     NumCacheNodes: "{{ NumCacheNodes | string }}"
      ClusterType: "{{ ClusterType }}"
-
    tags:
      Stack: "ansible-cloudformation"
      Application: "ansible-memcached"
-     Description: "{{ ansible_user_id }} memcached {{ ApplicationName }}"
+     Description: "{{ ansible_user_id }} memcached {{ application_name }}"
   register: elasticache
 
 - name: Check for ElastiCache CloudFormation error logs
