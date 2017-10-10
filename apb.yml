@@ -17,16 +17,27 @@ plans:
     description: 'Production Memcached Cluster on AWS Elasticache'
     free: false
     parameters:
+      ###############
+      # AWS Account Information
+      ###############
       - name: aws_access_key
         required: true
         title: AWS Access Key
         description: 'AWS Access Key to authenticate to AWS with.'
         type: string
+        display_group: AWS Account Information
       - name: aws_secret_key
         required: true
         title: AWS Secret Key
         description: 'AWS Secret Key to authenticate to AWS with.'
         type: string
+        display_group: AWS Account Information
+      - name: aws_cloudformation_role_arn
+        required: true
+        title: AWS Cloudformation role ARN
+        description: 'IAM role ARN for use as Cloudformation Stack Role.'
+        type: string
+        display_group: AWS Account Information
       - name: region
         required: true
         title: AWS Region
@@ -48,6 +59,9 @@ plans:
           - us-west-1
           - us-west-2
         default: us-west-2
+      ###############
+      # Elasticache Settings
+      ###############
       - name: ClusterType
         required: true
         title: Cluster Type
@@ -107,6 +121,9 @@ plans:
         type: boolean
         default: true
         display_group: Elasticache Settings
+      ###############
+      # Network and Security
+      ###############
       - name: VpcId
         required: true
         title: VPC ID
@@ -154,6 +171,9 @@ plans:
         description: 'CIDR block to allow to connect to database (e.g. "10.0.0.0/16")'
         type: string
         display_group: Network and Security
+      ###############
+      # Maintenance
+      ###############
       - name: PreferredMaintenanceWindowDay
         required: true
         title: Day of Preferred Maintenance Window
