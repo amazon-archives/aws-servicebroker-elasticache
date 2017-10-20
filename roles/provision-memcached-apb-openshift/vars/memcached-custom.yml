@@ -1,0 +1,3 @@
+# build this from vars until we can get cluster_url and ServiceInstance UID
+params_string: "{{ namespace }}::{{ _apb_plan_id }}::{{ aws_access_key }}::{{ aws_secret_key }}::{{ aws_cloudformation_role_arn }}::{{ region }}::{{ ClusterType }}::{{ NumCacheNodes }}::{{ EngineVersion }}::{{ CacheNodeType }}::{{ AllowVersionUpgrade }}::{{ VpcId }}::{{ PortNumber }}::{{ AZMode }}::{{ NumberOfAvailabilityZones }}::{{ AvailabilityZones }}::{{ CidrBlocks }}::{{ AccessCidr }}::{{ PreferredMaintenanceWindowDay }}::{{ PreferredMaintenanceWindowStartTime }}::{{ PreferredMaintenanceWindowEndTime }}"
+params_hash: "{{ params_string | checksum }}"
