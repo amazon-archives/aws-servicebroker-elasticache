@@ -4,16 +4,13 @@ global:
     - us-east-1
 
 plans:
-  mysql-prod:
+  memcached-prod:
     parameters:
-      DBInstanceClass: db.r3.2xlarge
-      AllocatedStorageAndIops: "100 GB / 1,000 IOPS"
-      EngineVersion: "5.7.17"
-      MysqlServerTimezone: "UTC"
-      PubliclyAccessible: false
+      NumCacheNodes: 2
+      EngineVersion: "1.4.34"
+      CacheNodeType: "cache.m4.large"
       AccessCidr: "10.0.0.0/16"
-      PreferredBackupWindow: "00:00-02:00"
       PreferredMaintenanceWindowDay: Mon
-      PreferredMaintenanceWindowStartTime: 04:00
-      PreferredMaintenanceWindowEndTime: 06:00
-    sample_app: rds-sample-app-apb
+      PreferredMaintenanceWindowStartTime: "04:00"
+      PreferredMaintenanceWindowEndTime: "06:00"
+    sample_app: elasticache-sample-app-apb
