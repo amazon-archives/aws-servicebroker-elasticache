@@ -30,7 +30,7 @@
   when: AvailabilityZones == "auto"
 - name: Launch ElastiCache Memcached cluster
   cloudformation:
-   stack_name: "apb-memcached-{{ stack_suffix }}"
+   stack_name: "apb-elasticache-{{ stack_suffix }}"
    state: "present"
    region: "{{ region }}"
    disable_rollback: false
