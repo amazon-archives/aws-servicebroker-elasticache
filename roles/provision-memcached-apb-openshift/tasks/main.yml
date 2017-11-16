@@ -64,6 +64,6 @@
 - name: Encode bind credentials
   asb_encode_binding:
     fields:
-      MEMCACHE_ENDPOINT: "{{ elasticache.stack_outputs.EndpointAddress }}"
-      MEMCACHE_PORT: "{{ PortNumber }}"
+      ELASTICACHE_ENDPOINT_ADDRESS: "{{ elasticache.stack_outputs.EndpointAddress }}"
+      ELASTICACHE_PORT_NUMBER:      "{{ PortNumber }}"
   when: elasticache.log | length < 1
