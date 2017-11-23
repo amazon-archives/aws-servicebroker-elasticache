@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: ' ElastiCache Template for Production memcached'
+Description: 'ElastiCache Template for Production memcached. qs-1nt0fs92c'
 Parameters:
   ApplicationName:
     Description: >-
