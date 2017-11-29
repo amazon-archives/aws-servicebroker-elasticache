@@ -227,6 +227,8 @@ plans:
         type: boolean
         default: true
     metadata:
-      displayName: "Amazon ElastiCache Memcached"
-      longDescription: "Amazon ElastiCache is a web service that makes it easy to set up, manage, and scale distributed in-memory cache environments in the cloud. It provides a high performance, resizeable, and cost-effective in-memory cache, while removing the complexity associated with deploying and managing a distributed cache environment."
-      cost: $0.00
+        displayName: "Amazon ElastiCache Memcached"
+        longDescription: "Amazon ElastiCache is a web service that makes it easy to set up, manage, and scale distributed in-memory cache environments in the cloud. It provides a high performance, resizeable, and cost-effective in-memory cache, while removing the complexity associated with deploying and managing a distributed cache environment."
+        imageUrl: "https://s3.amazonaws.com/thp-aws-icons-dev/Database_AmazonElasticCache_Memcached_LARGE.png"
+        documentationUrl: "https://aws.amazon.com/documentation/elasticache/"
+        cost: $0.00
