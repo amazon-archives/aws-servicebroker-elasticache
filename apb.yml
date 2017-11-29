@@ -9,13 +9,17 @@ bindable: true
 async: optional
 metadata:
   displayName: "Amazon ElastiCache"
-  longDescription: "Amazon ElastiCache is a web service that makes it easy to set up, manage, and scale distributed in-memory cache environments in the cloud. It provides a high performance, resizeable, and cost-effective in-memory cache, while removing the complexity associated with deploying and managing a distributed cache environment."
   imageUrl: "https://s3.amazonaws.com/thp-aws-icons-dev/Database_AmazonElasticCache_LARGE.png"
+  longDescription: "Amazon ElastiCache is a web service that makes it easy to set up, manage, and scale distributed in-memory cache environments in the cloud. It provides a high performance, resizeable, and cost-effective in-memory cache, while removing the complexity associated with deploying and managing a distributed cache environment."
   documentationUrl: "https://aws.amazon.com/documentation/elasticache/"
 plans:
   - name: memcached
     description: 'Production Memcached Cluster on AWS Elasticache'
     free: false
+    metadata:
+      displayName: "Amazon ElastiCache Memcached"
+      longDescription: "Amazon ElastiCache is a web service that makes it easy to set up, manage, and scale distributed in-memory cache environments in the cloud. It provides a high performance, resizeable, and cost-effective in-memory cache, while removing the complexity associated with deploying and managing a distributed cache environment."
+      cost: $0.00
     parameters:
       ###############
       # AWS Account Information
@@ -251,9 +255,12 @@ plans:
           - '22:00'
         default: "06:00"
         display_group: Maintenance
+<<<<<<< HEAD
     metadata:
         displayName: "Amazon ElastiCache Memcached"
         longDescription: "Amazon ElastiCache is a web service that makes it easy to set up, manage, and scale distributed in-memory cache environments in the cloud. It provides a high performance, resizeable, and cost-effective in-memory cache, while removing the complexity associated with deploying and managing a distributed cache environment."
         imageUrl: "https://s3.amazonaws.com/thp-aws-icons-dev/Database_AmazonElasticCache_Memcached_LARGE.png"
         documentationUrl: "https://aws.amazon.com/documentation/elasticache/"
         cost: $0.00
+=======
+>>>>>>> c704670... update to use stack role
